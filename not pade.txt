@@ -1,0 +1,139 @@
+C:\xampp\mysql\bin>mysql -u root -p
+Enter password:
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 93
+Server version: 10.4.32-MariaDB mariadb.org binary distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> use klinik
+Database changed
+MariaDB [klinik]> create table obat_berkah(
+    -> id int primary key auto_increment,
+    -> kdobat varchar(10) unique,
+    -> nama varchar(100),
+    -> berat varchar(10),
+    -> bentuk varchar(50));
+ERROR 1050 (42S01): Table 'obat_berkah' already exists
+MariaDB [klinik]> create table obat_berkah(
+    -> id int primary key auto_increment
+    -> kdobat varchar(10)unique,
+    -> nama varchar(100),
+    -> berat varchar(10),
+    -> bentuk varchar(50));Bye
+Ctrl-C -- exit!
+
+C:\xampp\mysql\bin>mysql -u root -p
+Enter password:
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 96
+Server version: 10.4.32-MariaDB mariadb.org binary distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> use klinik;
+Database changed
+MariaDB [klinik]> insert into obat_berkah(kdobat,nama,berat,bentuk)values('5001','bodrex','650mg','tablet');
+Query OK, 1 row affected (0.012 sec)
+
+MariaDB [klinik]> select * from klinik
+    -> Bye
+Ctrl-C -- exit!
+
+C:\xampp\mysql\bin>mysql -u root -p
+Enter password:
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 97
+Server version: 10.4.32-MariaDB mariadb.org binary distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> use klinik;
+Database changed
+MariaDB [klinik]> select * from klinik;
+ERROR 1146 (42S02): Table 'klinik.klinik' doesn't exist
+MariaDB [klinik]> select * from obat_berkah;
++----+--------+--------+-------+--------+
+| id | kdobat | nama   | berat | bentuk |
++----+--------+--------+-------+--------+
+|  1 | 5001   | bodrex | 650mg | tablet |
++----+--------+--------+-------+--------+
+1 row in set (0.001 sec)
+
+MariaDB [klinik]> insert into obat_berkah(kdobat,nama,berat,bentuk)values('5002','paracatamol','750mg','tablet');
+Query OK, 1 row affected (0.007 sec)
+
+MariaDB [klinik]> insert into obat_berkah(kdobat,nama,berat,bentuk)values('5001','diapet','500mg','tablet');
+ERROR 1062 (23000): Duplicate entry '5001' for key 'kdobat'
+MariaDB [klinik]> insert into obat_berkah(kdobat,nama,berat,bentuk)values('5003','diapet','550mg','tablet');
+Query OK, 1 row affected (0.008 sec)
+
+MariaDB [klinik]> insert into obat_berkah(kdobat,nama,berat,bentuk)values('5004','oskadon','500mg','tablet');
+Query OK, 1 row affected (0.007 sec)
+
+MariaDB [klinik]> insert into obat_berkah(kdobat,nama,berat,bentuk)values('5005','mixagrip','650mg','tablet');
+Query OK, 1 row affected (0.007 sec)
+
+MariaDB [klinik]> select*from obat_berkah;
++----+--------+-------------+-------+--------+
+| id | kdobat | nama        | berat | bentuk |
++----+--------+-------------+-------+--------+
+|  1 | 5001   | bodrex      | 650mg | tablet |
+|  2 | 5002   | paracatamol | 750mg | tablet |
+|  4 | 5003   | diapet      | 550mg | tablet |
+|  5 | 5004   | oskadon     | 500mg | tablet |
+|  6 | 5005   | mixagrip    | 650mg | tablet |
++----+--------+-------------+-------+--------+
+5 rows in set (0.000 sec)
+
+MariaDB [klinik]> update obat_berkah set nama='bodrex'where id='1';
+Query OK, 0 rows affected (0.001 sec)
+Rows matched: 1  Changed: 0  Warnings: 0
+
+MariaDB [klinik]> select*from obat_berkah;
++----+--------+-------------+-------+--------+
+| id | kdobat | nama        | berat | bentuk |
++----+--------+-------------+-------+--------+
+|  1 | 5001   | bodrex      | 650mg | tablet |
+|  2 | 5002   | paracatamol | 750mg | tablet |
+|  4 | 5003   | diapet      | 550mg | tablet |
+|  5 | 5004   | oskadon     | 500mg | tablet |
+|  6 | 5005   | mixagrip    | 650mg | tablet |
++----+--------+-------------+-------+--------+
+5 rows in set (0.001 sec)
+
+MariaDB [klinik]> update obat_berkah set nama='promagh'where id='1';
+Query OK, 1 row affected (0.007 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [klinik]> select*from obat_berkah;
++----+--------+-------------+-------+--------+
+| id | kdobat | nama        | berat | bentuk |
++----+--------+-------------+-------+--------+
+|  1 | 5001   | promagh     | 650mg | tablet |
+|  2 | 5002   | paracatamol | 750mg | tablet |
+|  4 | 5003   | diapet      | 550mg | tablet |
+|  5 | 5004   | oskadon     | 500mg | tablet |
+|  6 | 5005   | mixagrip    | 650mg | tablet |
++----+--------+-------------+-------+--------+
+5 rows in set (0.001 sec)
+
+MariaDB [klinik]> delete from obat_berkah where id='4';
+Query OK, 1 row affected (0.008 sec)
+
+MariaDB [klinik]> select*from obat_berkah;
++----+--------+-------------+-------+--------+
+| id | kdobat | nama        | berat | bentuk |
++----+--------+-------------+-------+--------+
+|  1 | 5001   | promagh     | 650mg | tablet |
+|  2 | 5002   | paracatamol | 750mg | tablet |
+|  5 | 5004   | oskadon     | 500mg | tablet |
+|  6 | 5005   | mixagrip    | 650mg | tablet |
++----+--------+-------------+-------+--------+
+4 rows in set (0.001 sec)
